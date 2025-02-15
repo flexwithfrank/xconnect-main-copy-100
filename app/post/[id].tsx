@@ -513,7 +513,7 @@ export default function PostScreen() {
             <MaterialCommunityIcons
               name="image-outline"
               size={24}
-              color="#1d9bf0"
+              color="#b0fb50"
             />
           </TouchableOpacity>
           <TouchableOpacity
