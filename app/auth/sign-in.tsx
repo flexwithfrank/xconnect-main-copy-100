@@ -39,7 +39,10 @@ export default function SignInScreen() {
 
     try {
       // 1. Sign in the user
-      const { error: signInError, data: { user } } = await supabase.auth.signInWithPassword({
+      const {
+        error: signInError,
+        data: { user },
+      } = await supabase.auth.signInWithPassword({
         email: form.email,
         password: form.password,
       });
@@ -47,7 +50,7 @@ export default function SignInScreen() {
       if (signInError) {
         if (signInError.message.includes('Invalid login credentials')) {
           setErrors({
-            submit: 'Invalid email or password'
+            submit: 'Invalid email or password',
           });
           return;
         }
@@ -67,7 +70,8 @@ export default function SignInScreen() {
         // Sign out the user since their profile doesn't exist
         await supabase.auth.signOut();
         setErrors({
-          submit: 'Your profile could not be found. Please sign up for a new account.'
+          submit:
+            'Your profile could not be found. Please sign up for a new account.',
         });
         return;
       }
@@ -75,8 +79,8 @@ export default function SignInScreen() {
       router.replace('/(tabs)');
     } catch (error: any) {
       console.error('Error signing in:', error);
-      setErrors({ 
-        submit: error.message || 'An error occurred. Please try again.' 
+      setErrors({
+        submit: error.message || 'An error occurred. Please try again.',
       });
     } finally {
       setLoading(false);
@@ -84,17 +88,17 @@ export default function SignInScreen() {
   };
 
   return (
-    <ScrollView 
+    <ScrollView
       contentContainerStyle={[
         styles.scrollContainer,
-        { paddingBottom: insets.bottom }
+        { paddingBottom: insets.bottom },
       ]}
       keyboardShouldPersistTaps="handled"
     >
       <View style={styles.container}>
         <View style={styles.header}>
           <Link href="/" style={styles.backButton}>
-            <Ionicons name="arrow-back" size={24} color="white" />
+          <Ionicons name="arrow-back" size={20} color="#b0fb50" />
             <Text style={styles.backText}>Back</Text>
           </Link>
           <Text style={styles.title}>Welcome back</Text>
@@ -106,21 +110,27 @@ export default function SignInScreen() {
             autoComplete="email"
             textContentType="emailAddress"
             value={form.email}
-            onChangeText={(text) => setForm(prev => ({ ...prev, email: text }))}
+            onChangeText={(text) =>
+              setForm((prev) => ({ ...prev, email: text }))
+            }
           />
           <TextInput
             style={styles.hiddenInput}
             autoComplete="password"
             textContentType="password"
             value={form.password}
-            onChangeText={(text) => setForm(prev => ({ ...prev, password: text }))}
+            onChangeText={(text) =>
+              setForm((prev) => ({ ...prev, password: text }))
+            }
             secureTextEntry
           />
-          
+
           <Input
             label="Email"
             value={form.email}
-            onChangeText={(text) => setForm(prev => ({ ...prev, email: text }))}
+            onChangeText={(text) =>
+              setForm((prev) => ({ ...prev, email: text }))
+            }
             error={errors.email}
             autoCapitalize="none"
             autoComplete="email"
@@ -131,7 +141,9 @@ export default function SignInScreen() {
           <Input
             label="Password"
             value={form.password}
-            onChangeText={(text) => setForm(prev => ({ ...prev, password: text }))}
+            onChangeText={(text) =>
+              setForm((prev) => ({ ...prev, password: text }))
+            }
             error={errors.password}
             secureTextEntry={!showPassword}
             rightIcon={showPassword ? 'eye-off' : 'eye'}
@@ -145,9 +157,9 @@ export default function SignInScreen() {
             <View style={styles.errorContainer}>
               <Text style={styles.submitError}>{errors.submit}</Text>
               {errors.submit.includes('Please sign up') && (
-                          <Link href="/auth/sign-up" style={styles.footerLink}>
-            <Text style={styles.footerLinkText}>Sign up</Text>
-          </Link>
+                <Link href="/auth/sign-up" style={styles.footerLink}>
+                  <Text style={styles.footerLinkText}>Sign up</Text>
+                </Link>
               )}
             </View>
           )}
@@ -182,12 +194,13 @@ const styles = StyleSheet.create({
   backButton: {
     flexDirection: 'row',
     alignItems: 'center',
-    marginBottom: 16,
+    justifyContent: 'center',
+    marginBottom: 24,
+    marginTop: 16,
   },
   backText: {
     color: '#b0fb50',
     fontSize: 16,
-    marginLeft: 8,
   },
   title: {
     fontSize: 32,

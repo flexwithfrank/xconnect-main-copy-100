@@ -1,7 +1,7 @@
 import { View, Text, StyleSheet, Image, TouchableOpacity, Linking } from 'react-native';
 import { router } from 'expo-router';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
-import { MaterialCommunityIcons } from '@expo/vector-icons';
+import { Feather } from '@expo/vector-icons';
 
 export default function SplashScreen() {
   const insets = useSafeAreaInsets();
@@ -17,7 +17,7 @@ export default function SplashScreen() {
   return (
     <View style={[styles.container, { paddingTop: insets.top, paddingBottom: insets.bottom }]}>
       <View style={styles.header}>
-        <MaterialCommunityIcons name="white-balance-sunny" size={24} color="#b0fb50" />
+        <Feather name="activity" size={24} color="#b0fb50" />
         <Text style={styles.logo}>Xconnect</Text>
       </View>
 
