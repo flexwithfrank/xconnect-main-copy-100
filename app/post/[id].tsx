@@ -229,6 +229,7 @@ export default function PostScreen() {
       if (error) throw error;
 
       setNewComment('');
+      setSelectedImage('');
       Keyboard.dismiss();
 
       setTimeout(() => {
@@ -766,8 +767,9 @@ const styles = StyleSheet.create({
     marginVertical: 10,
   },
   commentImg: {
-    width: '40%',
-    height: 80,
+    width: '100%',
+    height: 250,
+    objectFit: 'cover',
     borderRadius: 1,
     marginVertical: 10,
   },

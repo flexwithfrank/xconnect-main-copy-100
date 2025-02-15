@@ -40,8 +40,7 @@ export default function HomeScreen() {
   async function fetchPosts() {
     const { data, error } = await supabase
       .from('posts')
-      .select(
-        `
+      .select(`
         image_url,
         id,
         content,

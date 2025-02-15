@@ -187,16 +187,7 @@ export default function CreatePostScreen() {
       behavior={Platform.OS === 'ios' ? 'padding' : 'height'}
       style={styles.keyboardView}
     >
-      <Animated.View
-        style={[
-          styles.container,
-          {
-            paddingTop: insets.top,
-            paddingBottom: insets.bottom,
-            transform: [{ translateY: slideAnim }],
-          },
-        ]}
-      >
+      <Animated.View style={styles.container} >
         <View style={styles.header}>
           <TouchableOpacity onPress={handleClose} style={styles.closeButton}>
             <Text style={styles.closeText}>Cancel</Text>
@@ -312,7 +303,7 @@ const styles = StyleSheet.create({
     justifyContent: 'space-between',
     alignItems: 'center',
     paddingHorizontal: 16,
-    paddingVertical: 12,
+    paddingVertical: 25,
     borderBottomWidth: 0.5,
     borderBottomColor: '#2f3336',
   },
@@ -389,6 +380,7 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     justifyContent: 'space-between',
     alignItems: 'center',
+    backgroundColor: '#000000',
   },
   toolbarLeft: {
     flexDirection: 'row',
