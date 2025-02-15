@@ -31,8 +31,8 @@ export default function SplashScreen() {
 
       <View style={styles.content}>
         <View style={styles.titleContainer}>
-          <Text style={styles.title}>Let's Workout,</Text>
-          <Text style={styles.title}>Let's Get Healthy.</Text>
+          <Text style={styles.title}>Shred, track, and</Text>
+          <Text style={styles.title}>sweat together.</Text>
         </View>
 
         <View style={styles.buttonContainer}>
