@@ -98,7 +98,12 @@ export default function SignInScreen() {
       <View style={styles.container}>
         <View style={styles.header}>
           <Link href="/" style={styles.backButton}>
-          <Ionicons style={styles.icon} name="arrow-back" size={20} color="#b0fb50" />
+            <Ionicons
+              style={styles.icon}
+              name="arrow-back"
+              size={20}
+              color="#b0fb50"
+            />
             <Text style={styles.backText}>Back</Text>
           </Link>
           <Text style={styles.title}>Welcome back</Text>

@@ -26,8 +26,13 @@ export function Header() {
           schema: 'public',
           table: 'profiles',
         },
-        () => {
-          fetchProfile();
+        (payload) => {
+          if (
+            payload.eventType === 'UPDATE' ||
+            payload.eventType === 'INSERT'
+          ) {
+            fetchProfile();
+          }
         }
       )
       .subscribe();
