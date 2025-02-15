@@ -25,7 +25,7 @@ export function FloatingButton() {
       onPress={handlePress}
       activeOpacity={0.8}
     >
-      <MaterialCommunityIcons name="plus" size={24} color="#FFF" />
+      <MaterialCommunityIcons name="plus" size={24} color="#000000" />
     </TouchableOpacity>
   );
 }

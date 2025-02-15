@@ -262,34 +262,34 @@ export default function CreatePostScreen() {
               <MaterialCommunityIcons
                 name="image-outline"
                 size={24}
-                color="#1d9bf0"
+                color="#b0fb50"
               />
             </TouchableOpacity>
             <TouchableOpacity style={styles.toolbarButton}>
               <MaterialCommunityIcons
                 name="video-outline"
                 size={24}
-                color="#1d9bf0"
+                color="#b0fb50"
               />
             </TouchableOpacity>
             <TouchableOpacity style={styles.toolbarButton}>
               <MaterialCommunityIcons
                 name="format-list-bulleted"
                 size={24}
-                color="#1d9bf0"
+                color="#b0fb50"
               />
             </TouchableOpacity>
             <TouchableOpacity style={styles.toolbarButton}>
               <MaterialCommunityIcons
                 name="map-marker-outline"
                 size={24}
-                color="#1d9bf0"
+                color="#b0fb50"
               />
             </TouchableOpacity>
           </View>
           <View style={styles.toolbarRight}>
             <TouchableOpacity style={styles.toolbarButton}>
-              <MaterialCommunityIcons name="earth" size={20} color="#1d9bf0" />
+              <MaterialCommunityIcons name="earth" size={20} color="#b0fb50" />
               <Text style={styles.replyText}>Everyone can reply</Text>
             </TouchableOpacity>
           </View>
@@ -324,7 +324,7 @@ const styles = StyleSheet.create({
     fontSize: 16,
   },
   postButton: {
-    backgroundColor: '#1d9bf0',
+    backgroundColor: '#b0fb50',
     paddingHorizontal: 16,
     paddingVertical: 8,
     borderRadius: 20,
@@ -333,7 +333,7 @@ const styles = StyleSheet.create({
     opacity: 0.5,
   },
   postButtonText: {
-    color: '#ffffff',
+    color: '#000000',
     fontWeight: '600',
     fontSize: 15,
   },
@@ -405,7 +405,7 @@ const styles = StyleSheet.create({
     padding: 4,
   },
   replyText: {
-    color: '#1d9bf0',
+    color: '#b0fb50',
     fontSize: 14,
     marginLeft: 4,
   },
