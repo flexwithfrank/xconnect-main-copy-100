@@ -16,6 +16,8 @@ import { supabase } from '../lib/supabase';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import * as ImagePicker from 'expo-image-picker';
 import * as FileSystem from 'expo-file-system';
+import { SafeAreaView } from 'react-native-safe-area-context';
+
 
 export default function CreatePostScreen() {
   const insets = useSafeAreaInsets();
@@ -183,12 +185,13 @@ export default function CreatePostScreen() {
   const isPostDisabled = !content.trim() || loading;
 
   return (
+      <SafeAreaView style={{ flex: 1, backgroundColor: '#000' }}>
     <KeyboardAvoidingView
       behavior={Platform.OS === 'ios' ? 'padding' : 'height'}
-      style={styles.keyboardView}
+      style={{ flex: 1 }}
     >
-      <Animated.View style={styles.container} >
-        <View style={styles.header}>
+      <Animated.View style={[styles.container, { paddingBottom: insets.bottom }]}>
+        <View style={[styles.header, { paddingTop: insets.top }]}>
           <TouchableOpacity onPress={handleClose} style={styles.closeButton}>
             <Text style={styles.closeText}>Cancel</Text>
           </TouchableOpacity>
@@ -287,6 +290,7 @@ export default function CreatePostScreen() {
         </View>
       </Animated.View>
     </KeyboardAvoidingView>
+  </SafeAreaView>
   );
 }
 
