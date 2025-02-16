@@ -1,5 +1,17 @@
 import { useState, useEffect } from 'react';
-import { View, Text, StyleSheet, Modal, TextInput, TouchableOpacity, Image, Animated, Platform, KeyboardAvoidingView } from 'react-native';
+import { useRef } from 'react';
+import {
+  View,
+  Text,
+  StyleSheet,
+  Modal,
+  TextInput,
+  TouchableOpacity,
+  Image,
+  Animated,
+  Platform,
+  KeyboardAvoidingView,
+} from 'react-native';
 import { MaterialCommunityIcons } from '@expo/vector-icons';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import { supabase } from '../../lib/supabase';
@@ -32,7 +44,9 @@ export function ReplyModal({ visible, onClose, post }: ReplyModalProps) {
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
   const [currentUser, setCurrentUser] = useState<CurrentUser | null>(null);
-  const slideAnim = new Animated.Value(Platform.OS === 'web' ? 0 : 1000);
+  const slideAnim = useRef(
+    new Animated.Value(Platform.OS === 'web' ? 0 : 1000)
+  ).current;
 
   useEffect(() => {
     if (visible) {
@@ -43,12 +57,20 @@ export function ReplyModal({ visible, onClose, post }: ReplyModalProps) {
         friction: 11,
       }).start();
       fetchCurrentUser();
+    } else {
+      Animated.timing(slideAnim, {
+        toValue: 1000,
+        duration: 300,
+        useNativeDriver: true,
+      }).start();
     }
   }, [visible]);
 
   const fetchCurrentUser = async () => {
     try {
-      const { data: { user } } = await supabase.auth.getUser();
+      const {
+        data: { user },
+      } = await supabase.auth.getUser();
       if (!user) return;
 
       const { data: profile } = await supabase
@@ -67,7 +89,7 @@ export function ReplyModal({ visible, onClose, post }: ReplyModalProps) {
 
   const handleProfilePress = (userId: string | undefined) => {
     if (!userId) return;
-    
+
     onClose();
     if (userId === currentUser?.id) {
       router.push('/(tabs)/profile');
@@ -83,16 +105,16 @@ export function ReplyModal({ visible, onClose, post }: ReplyModalProps) {
     setError(null);
 
     try {
-      const { data: { user } } = await supabase.auth.getUser();
+      const {
+        data: { user },
+      } = await supabase.auth.getUser();
       if (!user) throw new Error('Not authenticated');
 
-      const { error: commentError } = await supabase
-        .from('comments')
-        .insert({
-          content: content.trim(),
-          post_id: post.id,
-          user_id: user.id,
-        });
+      const { error: commentError } = await supabase.from('comments').insert({
+        content: content.trim(),
+        post_id: post.id,
+        user_id: user.id,
+      });
 
       if (commentError) throw commentError;
 
@@ -113,36 +135,39 @@ export function ReplyModal({ visible, onClose, post }: ReplyModalProps) {
       transparent
       onRequestClose={onClose}
     >
-      <KeyboardAvoidingView 
+      <KeyboardAvoidingView
         behavior={Platform.OS === 'ios' ? 'padding' : 'height'}
         style={styles.keyboardView}
       >
-        <Animated.View 
+        <Animated.View
           style={[
             styles.container,
-            { 
+            {
               paddingTop: insets.top,
               paddingBottom: insets.bottom,
-              transform: [{ translateY: slideAnim }] 
-            }
+              transform: [{ translateY: slideAnim }],
+            },
           ]}
         >
           <View style={styles.header}>
             <TouchableOpacity onPress={onClose} style={styles.closeButton}>
               <Text style={styles.closeText}>Cancel</Text>
             </TouchableOpacity>
-            <TouchableOpacity 
+            <TouchableOpacity
               onPress={handleReply}
               disabled={!content.trim() || loading}
               style={[
                 styles.replyButton,
-                (!content.trim() || loading) && styles.replyButtonDisabled
+                (!content.trim() || loading) && styles.replyButtonDisabled,
               ]}
             >
-              <Text style={[
-                styles.replyButtonText,
-                (!content.trim() || loading) && styles.replyButtonTextDisabled
-              ]}>
+              <Text
+                style={[
+                  styles.replyButtonText,
+                  (!content.trim() || loading) &&
+                    styles.replyButtonTextDisabled,
+                ]}
+              >
                 {loading ? 'Replying...' : 'Reply'}
               </Text>
             </TouchableOpacity>
@@ -150,30 +175,40 @@ export function ReplyModal({ visible, onClose, post }: ReplyModalProps) {
 
           <View style={styles.content}>
             <View style={styles.originalPost}>
-              <TouchableOpacity onPress={() => handleProfilePress(post.profiles.username)}>
+              <TouchableOpacity
+                onPress={() => handleProfilePress(post.profiles.username)}
+              >
                 <Image
                   source={
                     post.profiles.avatar_url
                       ? { uri: post.profiles.avatar_url }
-                      : { uri: 'https://images.unsplash.com/photo-1633332755192-727a05c4013d?w=100&h=100&fit=crop' }
+                      : {
+                          uri: 'https://images.unsplash.com/photo-1633332755192-727a05c4013d?w=100&h=100&fit=crop',
+                        }
                   }
                   style={styles.avatar}
                 />
               </TouchableOpacity>
               <View style={styles.postContent}>
-                <Text style={styles.displayName}>{post.profiles.display_name}</Text>
+                <Text style={styles.displayName}>
+                  {post.profiles.display_name}
+                </Text>
                 <Text style={styles.username}>@{post.profiles.username}</Text>
                 <Text style={styles.postText}>{post.content}</Text>
               </View>
             </View>
 
             <View style={styles.replyContainer}>
-              <TouchableOpacity onPress={() => handleProfilePress(currentUser?.id)}>
+              <TouchableOpacity
+                onPress={() => handleProfilePress(currentUser?.id)}
+              >
                 <Image
                   source={
                     currentUser?.avatar_url
                       ? { uri: currentUser.avatar_url }
-                      : { uri: 'https://images.unsplash.com/photo-1633332755192-727a05c4013d?w=100&h=100&fit=crop' }
+                      : {
+                          uri: 'https://images.unsplash.com/photo-1633332755192-727a05c4013d?w=100&h=100&fit=crop',
+                        }
                   }
                   style={styles.avatar}
                 />

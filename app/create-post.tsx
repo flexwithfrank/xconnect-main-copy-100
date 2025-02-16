@@ -281,7 +281,7 @@ export default function CreatePostScreen() {
           <View style={styles.toolbarRight}>
             <TouchableOpacity style={styles.toolbarButton}>
               <MaterialCommunityIcons name="earth" size={20} color="#b0fb50" />
-              <Text style={styles.replyText}>Everyone can reply</Text>
+              <Text style={styles.replyText}>Everyone</Text>
             </TouchableOpacity>
           </View>
         </View>
