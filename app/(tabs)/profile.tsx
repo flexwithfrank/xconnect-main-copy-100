@@ -24,7 +24,7 @@ type Profile = {
 };
 
 type Post = {
-image_url: React.JSX.Element;
+  image_url: React.JSX.Element;
   id: string;
   content: string;
   created_at: string;
@@ -231,7 +231,7 @@ export default function ProfileScreen() {
 
               <Text style={styles.postContent}>{post.content}</Text>
               {post?.image_url && (
-                  <Image source={{ uri: post?.image_url }} style={styles.image} />
+                <Image source={{ uri: post?.image_url }} style={styles.image} />
               )}
 
               <View style={styles.postActions}>
@@ -447,5 +447,6 @@ const styles = StyleSheet.create({
     height: 200,
     borderRadius: 10,
     marginTop: 10,
+    marginBottom: 15,
   },
 });
