@@ -122,6 +122,7 @@ export default function HomeScreen() {
                 content,
                 created_at,
                 user_id,
+                image_url,
                 likes_count,
                 profiles (
                   username,

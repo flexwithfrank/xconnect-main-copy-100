@@ -121,6 +121,7 @@ export default function CreatePostScreen() {
   };
 
   const uploadImage = async (imageUri: string, userId: string) => {
+    setLoading(true)
     try {
       const fileExt = imageUri.split('.').pop();
       const fileName = `${userId}_${Date.now()}.${fileExt}`;
@@ -147,6 +148,7 @@ export default function CreatePostScreen() {
         throw error;
       }
 
+    setLoading(false)
       return supabase.storage.from('posts').getPublicUrl(filePath).data
         .publicUrl;
     } catch (error) {
@@ -184,7 +186,7 @@ export default function CreatePostScreen() {
   const isPostDisabled = !content.trim() || loading;
 
   return (
-    <SafeAreaView style={{ flex: 1 }}>>
+    <SafeAreaView style={{ flex: 1 }}>
     <KeyboardAvoidingView
       behavior={Platform.OS === 'ios' ? 'padding' : 'height'}
       style={styles.keyboardView}
