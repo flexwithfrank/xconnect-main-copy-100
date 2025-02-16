@@ -773,11 +773,13 @@ const styles = StyleSheet.create({
     borderRadius: 1,
     marginVertical: 10,
   },
-  addCommentImg: {
-    width: '20%',
-    height: 50,
-    borderRadius: 1,
-    marginVertical: 10,
+   addCommentImg: {
+    width: '100%',
+    height: 200,
+    borderRadius: 10,
+    marginVertical: 8,
+    marginHorizontal: 16,
+    objectFit: 'cover',
   },
   toolbarButton: {
     flexDirection: 'row',
