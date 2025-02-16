@@ -18,6 +18,7 @@ import * as ImagePicker from 'expo-image-picker';
 import * as FileSystem from 'expo-file-system';
 import { SafeAreaView } from 'react-native-safe-area-context';
 
+
 export default function CreatePostScreen() {
   const insets = useSafeAreaInsets();
   const [content, setContent] = useState('');
