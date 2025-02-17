@@ -83,10 +83,10 @@ export default function TabLayout() {
         <Tabs.Screen
           name="settings"
           options={{
-            title: 'Settings',
+            title: 'Menu',
             tabBarIcon: ({ focused, size, color }) => (
               <MaterialCommunityIcons 
-                name={focused ? "cog" : "cog-outline"} 
+                name={focused ? "dots-horizontal-circle" : "dots-horizontal-circle-outline"} 
                 size={size} 
                 color={color} 
               />
